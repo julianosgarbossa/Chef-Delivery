@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "acai-panda-header.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
