@@ -11,6 +11,7 @@ struct StoreDetailView: View {
     
     let store: StoreType
     @Environment(\.dismiss) private var dismiss
+    @State private var selectedProduct: ProductType?
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -46,27 +47,37 @@ struct StoreDetailView: View {
                     .padding()
                 
                 ForEach(store.products) { product in
-                    HStack(spacing: 8) {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(product.name)
-                                .bold()
-                            Text(product.description)
-                                .foregroundStyle(.black.opacity(0.5))
-                            
-                            Text(product.price, format: .currency(code: "BRL"))
-                                .bold()
+                    
+                    Button {
+                        selectedProduct = product
+                    } label: {
+                        HStack(spacing: 8) {
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text(product.name)
+                                    .bold()
+                                Text(product.description)
+                                    .foregroundStyle(.black.opacity(0.5))
+                                    .multilineTextAlignment(.leading)
+                                
+                                Text(product.price, format: .currency(code: "BRL"))
+                                    .bold()
+                                
+                            }
+                            Spacer()
+                            Image(product.image)
+                                .resizable()
+                                .scaledToFit()
+                                .cornerRadius(12)
+                                .frame(width: 120, height: 120)
+                                .shadow(color: .black.opacity(0.3), radius: 20, x: 6, y: 8)
                             
                         }
-                        Spacer()
-                        Image(product.image)
-                            .resizable()
-                            .scaledToFit()
-                            .cornerRadius(12)
-                            .frame(width: 120, height: 120)
-                            .shadow(color: .black.opacity(0.3), radius: 20, x: 6, y: 8)
-                        
+                        .padding()
+                        .foregroundStyle(.black)
                     }
-                    .padding()
+                    .sheet(item: $selectedProduct) { product in
+                        ProductDetailView(product: product)
+                    }
                 }
             }
             .navigationTitle(store.name)
