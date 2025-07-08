@@ -39,7 +39,7 @@ let storesMock: [StoreType] = [
         logoImage: "food-court-logo",
         headerImage: "food-court-header",
         location: "Avenida Secundária, 456, São Paulo, SP",
-        stars: 4,
+        stars: 2,
         products: [
             ProductType(id: 6, name: "Pizza Margherita", description: "Pizza com molho de tomate, queijo mozzarella e manjericão", image: "margherita_pizza", price: 18.99),
             ProductType(id: 7, name: "Pizza Pepperoni", description: "Pizza com molho de tomate, queijo mozzarella e pepperoni", image: "pepperoni_pizza", price: 19.99),

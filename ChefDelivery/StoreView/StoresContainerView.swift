@@ -7,19 +7,66 @@
 
 import SwiftUI
 
-let title = "Lojas"
-
 struct StoresContainerView: View {
+    
+    
+    let title = "Lojas"
+    @State private var ratingFilter: Int = 0
+    var filteredStores: [StoreType] {
+        return storesMock.filter { store in
+            store.stars >= ratingFilter
+        }
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
-            Text(title)
-                .font(.headline)
-            VStack(alignment: .leading, spacing: 30) {
-                ForEach(storesMock) { mock in
-                    NavigationLink {
-                        StoreDetailView(store: mock)
+            HStack {
+                Text(title)
+                    .font(.headline)
+                
+                Spacer()
+                
+                Menu("Filtrar") {
+                    
+                    Button {
+                        ratingFilter = 0
                     } label: {
-                        StoreItemView(store: mock)
+                        Text("Limpar filtro")
+                    }
+                    
+                    Divider()
+
+                    ForEach(1...5, id: \.self) { rating in
+                        Button {
+                            ratingFilter = rating
+                        } label: {
+                            if rating == 1 {
+                                Text("\(rating) estrela ou mais")
+                            } else if rating == 5 {
+                                Text("\(rating) estrelas")
+                            } else {
+                                Text("\(rating) estrelas ou mais")
+                            }
+                        }
+                    }
+                }
+                .foregroundStyle(.black)
+            }
+            VStack(alignment: .leading, spacing: 30) {
+                if filteredStores.isEmpty {
+                    Text("Nenhum resultado encontrado")
+                        .font(.title3)
+                        .bold()
+                        .foregroundStyle(Color("ColorRed"))
+                        .padding(.vertical, 32)
+                        .frame(maxWidth: .infinity)
+                } else {
+                    ForEach(filteredStores) { mock in
+                        NavigationLink {
+                            StoreDetailView(store: mock)
+                        } label: {
+                            StoreItemView(store: mock)
+                        }
                     }
                 }
             }
