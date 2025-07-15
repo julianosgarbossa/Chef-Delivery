@@ -16,12 +16,15 @@ struct StoreDetailProductItemView: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text(product.name)
                     .bold()
+                    .multilineTextAlignment(.leading)
+                
                 Text(product.description)
                     .foregroundStyle(.black.opacity(0.5))
                     .multilineTextAlignment(.leading)
                 
                 Text(product.price, format: .currency(code: "BRL"))
                     .bold()
+                    .multilineTextAlignment(.leading)
                 
             }
             Spacer()

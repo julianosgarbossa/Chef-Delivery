@@ -12,8 +12,11 @@ struct StoresContainerView: View {
     
     let title = "Lojas"
     @State private var ratingFilter: Int = 0
+    
+    var stores: [StoreType]
+    
     var filteredStores: [StoreType] {
-        return storesMock.filter { store in
+        return stores.filter { store in
             store.stars >= ratingFilter
         }
     }
@@ -61,11 +64,11 @@ struct StoresContainerView: View {
                         .padding(.vertical, 32)
                         .frame(maxWidth: .infinity)
                 } else {
-                    ForEach(filteredStores) { mock in
+                    ForEach(filteredStores) { store in
                         NavigationLink {
-                            StoreDetailView(store: mock)
+                            StoreDetailView(store: store)
                         } label: {
-                            StoreItemView(store: mock)
+                            StoreItemView(store: store)
                         }
                     }
                 }
@@ -77,6 +80,6 @@ struct StoresContainerView: View {
 }
 
 #Preview {
-    StoresContainerView()
+    StoresContainerView(stores: storesMock)
         .background(Color.gray.opacity(0.1))
 }

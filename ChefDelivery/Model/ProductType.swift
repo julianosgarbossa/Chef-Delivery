@@ -7,10 +7,18 @@
 
 import Foundation
 
-struct ProductType: Identifiable {
+struct ProductType: Identifiable, Decodable {
     let id: Int
     let name: String
     let description: String
     let image: String
     let price: Double
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case description
+        case image
+        case price
+    }
 }
