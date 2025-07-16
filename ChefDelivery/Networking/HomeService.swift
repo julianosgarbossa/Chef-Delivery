@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 enum NetworkingError: Error, LocalizedError {
     case invalidURL
@@ -28,6 +29,17 @@ enum NetworkingError: Error, LocalizedError {
 }
 
 class HomeService {
+    
+    func fetchDataWithAlamofire(completion: @escaping ([StoreType]?, Error?) -> Void) {
+        AF.request("https://private-cf6b5a-chefdelivery30.apiary-mock.com/stores").responseDecodable(of: [StoreType].self) { response in
+            switch response.result {
+            case .success(let stores):
+                completion(stores, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
     
     func fetchData() async throws -> [StoreType] {
         guard let url = URL(string: "https://private-cf6b5a-chefdelivery30.apiary-mock.com/stores") else {

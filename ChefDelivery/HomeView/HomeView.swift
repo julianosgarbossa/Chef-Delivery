@@ -38,6 +38,7 @@ struct HomeView: View {
             Task {
                 await getStores()
             }
+            self.getStoresWithAlamofire()
         }
     }
     
@@ -50,6 +51,16 @@ struct HomeView: View {
         } catch {
             print("Erro ao buscar lojas: \(error.localizedDescription)")
             self.isLoading = false
+        }
+    }
+    
+    func getStoresWithAlamofire() {
+        self.service.fetchDataWithAlamofire { stores, error in
+            if let stores {
+                print(stores)
+            } else {
+                print(error?.localizedDescription ?? "Erro ao carregar lojas")
+            }
         }
     }
 }
