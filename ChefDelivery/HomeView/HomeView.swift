@@ -46,7 +46,6 @@ struct HomeView: View {
         do {
             let result = try await service.fetchData()
             self.storesType = result
-            print(storesType)
             self.isLoading = false
         } catch {
             print("Erro ao buscar lojas: \(error.localizedDescription)")
