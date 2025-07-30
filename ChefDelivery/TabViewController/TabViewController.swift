@@ -22,7 +22,7 @@ struct TabViewController: View {
             }
             
             NavigationStack {
-                SearchStoreView()
+                SearchStoreView(viewModel: SearchStoreViewModel(service: SearchService()))
             }
             .tabItem {
                 Label {
