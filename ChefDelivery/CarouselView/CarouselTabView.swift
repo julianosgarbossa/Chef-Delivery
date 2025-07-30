@@ -10,6 +10,7 @@ import SwiftUI
 struct CarouselTabView: View {
     
     @State private var currentIndex: Int = 1
+    @State private var timer: Timer?
     
     let ordersMock: [OrderType] = [
         OrderType(id: 1, name: "banner burguer", image: "barbecue-banner"),
@@ -27,15 +28,19 @@ struct CarouselTabView: View {
         .frame(height: 180)
         .tabViewStyle(.page(indexDisplayMode: .always))
         .onAppear {
-            Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+            timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
                 withAnimation(.easeInOut(duration: 1)) {
-                    if currentIndex > ordersMock.count {
+                    if currentIndex >= ordersMock.count {
                         currentIndex = 1
                     } else {
                         currentIndex += 1
                     }
                 }
             }
+        }
+        .onDisappear() {
+            timer?.invalidate()
+            timer = nil
         }
     }
 }
