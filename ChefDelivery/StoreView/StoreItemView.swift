@@ -18,8 +18,17 @@ struct StoreItemView: View {
                 .scaledToFit()
                 .cornerRadius(25)
                 .frame(width: 50, height: 50)
-            Text(store.name)
-                .font(.subheadline)
+            VStack(alignment: .leading, spacing: 5) {
+                Text(store.name)
+                    .font(.subheadline)
+                HStack {
+                    ForEach(1...store.stars, id: \.self) { _ in
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.yellow)
+                            .font(.caption)
+                    }
+                }
+            }
             Spacer()
         }
     }
