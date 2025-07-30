@@ -17,21 +17,20 @@ struct HomeView: View {
     
     // MARK: - View
     var body: some View {
-        NavigationView {
-            VStack {
-                if isLoading {
-                    ProgressView()
-                } else {
-                    NavigationBar()
-                        .padding(.horizontal, 15)
-                    ScrollView(.vertical, showsIndicators: false) {
-                        VStack(spacing: 20) {
-                            OrderTypeGridView()
-                            CarouselTabView()
-                            StoresContainerView(stores: storesType)
-                        }
+        VStack {
+            if isLoading {
+                ProgressView()
+            } else {
+                NavigationBar()
+                    .padding(.horizontal, 15)
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(spacing: 20) {
+                        OrderTypeGridView()
+                        CarouselTabView()
+                        StoresContainerView(stores: storesType)
                     }
                 }
+                
             }
         }
         .onAppear() {

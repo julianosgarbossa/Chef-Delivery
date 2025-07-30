@@ -12,9 +12,8 @@ struct LoginView: View {
     @State private var isAnimated: Bool = false
     @State private var imageOffset: CGSize = .zero
     @State private var buttonOffSet: CGFloat = 0
-    @State private var showSecondScreen = false
+    @Binding var didPassIntro: Bool
     let buttonHeight: CGFloat = 80
-
     
     var body: some View {
         GeometryReader { geometry in
@@ -123,7 +122,7 @@ struct LoginView: View {
                                     if buttonOffSet > (geometry.size.width - 60) / 2 {
                                         withAnimation(.easeInOut(duration: 0.25)) {
                                             buttonOffSet = (geometry.size.width - 60) - 80
-                                            showSecondScreen = true
+                                            didPassIntro = true
                                         }
                                     } else {
                                         withAnimation(.easeInOut(duration: 0.25)) {
@@ -144,12 +143,9 @@ struct LoginView: View {
                 }
             }
         }
-        .fullScreenCover(isPresented: $showSecondScreen) {
-            HomeView()
-        }
     }
 }
 
 #Preview {
-    LoginView()
+    LoginView(didPassIntro: .constant(true))
 }

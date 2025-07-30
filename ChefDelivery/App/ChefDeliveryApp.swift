@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct ChefDeliveryApp: App {
+    
+    @State private var didPassIntro = false
+    
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            if didPassIntro {
+                TabViewController()
+            } else {
+                LoginView(didPassIntro: $didPassIntro)
+            }
         }
     }
 }
