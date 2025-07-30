@@ -9,13 +9,36 @@ import SwiftUI
 
 struct SearchStoreView: View {
     
-    @State var storesType: [StoreTypeTwo] = []
-    private let service = SearchService()
+    @ObservedObject var viewModel: SearchStoreViewModel
+    
+    var searchTextView: some View {
+        HStack {
+            TextField("Pesquisar loja", text: $viewModel.searchText)
+                .padding(7)
+                .padding(.horizontal, 25)
+                .background(Color(.systemGray6))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .autocorrectionDisabled()
+            
+            Button {
+                self.viewModel.searchText = ""
+            } label: {
+                Image(systemName: "xmark.circle.fill")
+                    .foregroundStyle(.gray)
+                    .padding(.trailing, 8)
+            }
+        }
+        .padding(.top, 8)
+        .padding(.bottom, 8)
+    }
     
     var body: some View {
         VStack {
             List {
-                ForEach(storesType, id: \.id) { store in
+                searchTextView
+                    .listRowSeparator(.hidden)
+                
+                ForEach(viewModel.filteredStores(), id: \.id) { store in
                     Text(store.name)
                         .font(.subheadline)
                         .listRowInsets(EdgeInsets())
@@ -25,6 +48,7 @@ struct SearchStoreView: View {
                         .padding(.bottom, 30)
                 }
             }
+            .buttonStyle(PlainButtonStyle())
             .padding(.top, 15)
             .listStyle(PlainListStyle())
             .scrollIndicators(.hidden)
@@ -32,30 +56,11 @@ struct SearchStoreView: View {
             Spacer()
         }
         .onAppear() {
-            self.fetchData()
+            self.viewModel.fetchData()
         }
     }
-    
-    // MARK: - Methods
-    
-    func fetchData() {
-        Task {
-            do {
-                let result = try await service.fetchData()
-                switch result {
-                case .success(let stores):
-                    self.storesType = stores
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
 }
 
 #Preview {
-    SearchStoreView()
+    SearchStoreView(viewModel: SearchStoreViewModel(service: SearchService()))
 }
