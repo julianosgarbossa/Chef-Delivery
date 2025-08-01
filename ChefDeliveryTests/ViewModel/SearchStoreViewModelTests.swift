@@ -17,6 +17,24 @@ final class SearchStoreViewModelTests: XCTestCase {
 
     override func setUpWithError() throws {
         sut = SearchStoreViewModel(service: SearchService())
+        
+        sut.storesType = [
+            StoreTypeTwo(id: 1,
+                         name: "Tempero Brasil",
+                         location: "Benjamin Constant 324 - Passo Fundo RS",
+                         stars: 4,
+                         specialties: ["pizza", "lanchonete"]),
+            StoreTypeTwo(id: 2,
+                         name: "Sushi do Adão",
+                         location: "Independência 732 - Passo Fundo RS",
+                         stars: 5,
+                         specialties: ["ramen", "japonês"]),
+            StoreTypeTwo(id: 3,
+                         name: "Spartano",
+                         location: "Paisandú 125 - Passo Fundo RS",
+                         stars: 2,
+                         specialties: ["hamburguer", "lanchonete"])
+        ]
     }
 
     override func tearDownWithError() throws {
@@ -25,51 +43,53 @@ final class SearchStoreViewModelTests: XCTestCase {
     
     // MARK: - Unit Tests Methods
     func testFilteredStores() {
-        sut.storesType = [
-            StoreTypeTwo(id: 1,
-                         name: "Tempero Brasil",
-                         location: "Benjamin Constant 324 - Passo Fundo RS",
-                         stars: 4),
-            StoreTypeTwo(id: 2,
-                         name: "Sushi do Adão",
-                         location: "Independência 732 - Passo Fundo RS",
-                         stars: 5),
-            StoreTypeTwo(id: 3,
-                         name: "Spartano",
-                         location: "Paisandú 125 - Passo Fundo RS",
-                         stars: 2),
-        ]
+        
+        var filteredStores: [StoreTypeTwo] = []
         
         sut.searchText = "Su"
         
-        let filteredStores = sut.filteredStores()
-        
-        XCTAssertEqual(filteredStores.count, 1)
-        XCTAssertEqual(filteredStores[0].name, "Sushi do Adão")
-        XCTAssertNotEqual(filteredStores.count, 0)
+        do {
+            filteredStores = try sut.filteredStores()
+            XCTAssertEqual(filteredStores.count, 1)
+            XCTAssertEqual(filteredStores[0].name, "Sushi do Adão")
+        } catch {
+            XCTFail("Failed to search stores")
+        }
     }
     
     func testFilteredSoresWithSpecialCharactersInSearchText() {
-        sut.storesType = [
-            StoreTypeTwo(id: 1,
-                         name: "Tempero Brasil",
-                         location: "Benjamin Constant 324 - Passo Fundo RS",
-                         stars: 4),
-            StoreTypeTwo(id: 2,
-                         name: "Sushi do Adão",
-                         location: "Independência 732 - Passo Fundo RS",
-                         stars: 5),
-            StoreTypeTwo(id: 3,
-                         name: "Spartano",
-                         location: "Paisandú 125 - Passo Fundo RS",
-                         stars: 2),
-        ]
         
-        sut.searchText = "!@#$%^&*()"
+        var filteredStores: [StoreTypeTwo] = []
         
-        let filteredStores = sut.filteredStores()
+        sut.searchText = "!@#$%"
         
-        XCTAssertTrue(filteredStores.isEmpty)
-        XCTAssertEqual(filteredStores.count, 0)
+        do {
+            filteredStores = try sut.filteredStores()
+            XCTFail("Failed to search")
+        } catch {
+            XCTAssertTrue(filteredStores.isEmpty)
+        }
+    }
+    
+    func testFilteredStoresUsingTerm() {
+        
+        var filteredStores: [StoreTypeTwo] = []
+        
+        sut.searchText = "pizza"
+        
+        do {
+            filteredStores = try sut.filteredStores()
+            XCTAssertEqual(filteredStores.count, 1)
+            XCTAssertEqual(filteredStores[0].name, "Tempero Brasil")
+        } catch {
+            XCTFail("Failed to search")
+        }
+    }
+    
+    func testFilteredStoresException() {
+
+        sut.searchText = "xxZZz"
+        
+        XCTAssertThrowsError(try sut.filteredStores())
     }
 }

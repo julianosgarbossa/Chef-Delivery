@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum SearchError: Error {
+    case noResultsFound
+}
+
 class SearchStoreViewModel: ObservableObject {
     
     // MARK: - Attributes
@@ -36,14 +40,18 @@ class SearchStoreViewModel: ObservableObject {
         }
     }
     
-    func filteredStores() -> [StoreTypeTwo] {
+    func filteredStores() throws -> [StoreTypeTwo] {
         if searchText.isEmpty {
             return storesType
         }
         
-        return storesType.filter { store in
-            store.name.localizedCaseInsensitiveContains(searchText)
+        let filteredList = storesType.filter { $0.metches(term: searchText.lowercased()) }
+        
+        if filteredList.isEmpty {
+            throw SearchError.noResultsFound
         }
+        
+        return filteredList
     }
 }
 
