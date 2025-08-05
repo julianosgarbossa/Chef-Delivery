@@ -80,8 +80,17 @@ struct SearchStoreView: View {
             
             Spacer()
         }
-        .onAppear() {
-            self.viewModel.fetchData()
+        .alert("Desculpe!", isPresented: $viewModel.showAlert) {
+            Button("OK") {
+                self.viewModel.showAlert = false
+            }
+        } message: {
+            Text("Nosso time está trabalhando na solução deste problema. Por favor, tente novamente mais tarde.")
+        }
+        .onAppear {
+            Task {
+                await self.viewModel.fetchData()
+            }
         }
     }
 }
