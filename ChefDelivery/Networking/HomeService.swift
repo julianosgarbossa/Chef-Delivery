@@ -13,6 +13,7 @@ enum NetworkingError: Error, LocalizedError {
     case requestFailed(error: Error)
     case invalidResponse(statusCode: Int)
     case decodingFailed(error: Error)
+    case serverError(Int)
     
     var errorDescription: String? {
         switch self {
@@ -24,6 +25,8 @@ enum NetworkingError: Error, LocalizedError {
             return "Resposta HTTP inválida: status code \(statusCode)"
         case .decodingFailed(let error):
             return "Erro ao decodificar o JSON: \(error.localizedDescription)"
+        case .serverError(let error):
+            return "Erro de servidor: \(error)"
         }
     }
 }

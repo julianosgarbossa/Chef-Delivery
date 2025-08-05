@@ -14,29 +14,31 @@ enum SearchError: Error {
 class SearchStoreViewModel: ObservableObject {
     
     // MARK: - Attributes
-    let service: SearchService
+    let service: SearchServiceProtocol
     @Published var storesType: [StoreTypeTwo] = []
     @Published var searchText: String = ""
+    @Published var showAlert = false
     
-    init(service: SearchService) {
+    init(service: SearchServiceProtocol) {
         self.service = service
     }
     
     // MARK: - Methods
     @MainActor
-    func fetchData() {
-        Task {
-            do {
-                let result = try await service.fetchData()
-                switch result {
-                case .success(let stores):
-                    self.storesType = stores
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            } catch {
+    func fetchData() async {
+        do {
+            let result = try await service.fetchData()
+            switch result {
+            case .success(let stores):
+                self.storesType = stores
+                self.showAlert = false
+            case .failure(let error):
+                self.showAlert = true
                 print(error.localizedDescription)
             }
+        } catch {
+            self.showAlert = true
+            print(error.localizedDescription)
         }
     }
     

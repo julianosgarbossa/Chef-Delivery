@@ -14,7 +14,7 @@ final class SearchStoreViewModelTests: XCTestCase {
     var sut: SearchStoreViewModel!
     
     // MARK: - Setup
-
+    
     override func setUpWithError() throws {
         sut = SearchStoreViewModel(service: SearchService())
         
@@ -36,9 +36,9 @@ final class SearchStoreViewModelTests: XCTestCase {
                          specialties: ["hamburguer", "lanchonete"])
         ]
     }
-
+    
     override func tearDownWithError() throws {
-        
+        sut = nil
     }
     
     // MARK: - Unit Tests Methods
@@ -87,9 +87,51 @@ final class SearchStoreViewModelTests: XCTestCase {
     }
     
     func testFilteredStoresException() {
-
+        
         sut.searchText = "xxZZz"
         
         XCTAssertThrowsError(try sut.filteredStores())
+    }
+    
+    func testFetchDataWithSuccess() async throws {
+        sut = SearchStoreViewModel(service: StubSearchService())
+         
+        await sut.fetchData()
+        
+        XCTAssertEqual(sut.storesType.count, 2)
+        XCTAssertEqual(sut.storesType[0].name, "Tempero Brasil")
+        XCTAssertEqual(sut.storesType[1].name, "Sushi do Adão")
+    }
+    
+    func testFetchDataWithFailure() async throws {
+        sut = SearchStoreViewModel(service: StubSearchServiceFailure())
+        
+        await sut.fetchData()
+        
+        XCTAssertTrue(sut.showAlert)
+    }
+}
+
+class StubSearchService: SearchServiceProtocol {
+    func fetchData() async throws -> Result<[StoreTypeTwo], NetworkingError> {
+        let stores: [StoreTypeTwo] = [
+            StoreTypeTwo(id: 1,
+                         name: "Tempero Brasil",
+                         location: "Benjamin Constant 324 - Passo Fundo RS",
+                         stars: 4,
+                         specialties: ["pizza", "lanchonete"]),
+            StoreTypeTwo(id: 2,
+                         name: "Sushi do Adão",
+                         location: "Independência 732 - Passo Fundo RS",
+                         stars: 5,
+                         specialties: ["ramen", "japonês"]),
+        ]
+        return .success(stores)
+    }
+}
+
+class StubSearchServiceFailure: SearchServiceProtocol {
+    func fetchData() async throws -> Result<[StoreTypeTwo], NetworkingError> {
+        return .failure(.invalidURL)
     }
 }
