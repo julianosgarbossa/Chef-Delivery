@@ -19,17 +19,6 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3AD84E0E2E3AAF50004A155A"
-               BuildableName = "ChefDeliveryTests.xctest"
-               BlueprintName = "ChefDeliveryTests"
-               ReferencedContainer = "container:ChefDelivery.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "3AD570B82E42A8AA0002E8A9"
                BuildableName = "ChefDeliveryUITests.xctest"
                BlueprintName = "ChefDeliveryUITests"
@@ -47,9 +36,7 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES"
-      consoleMode = "0"
-      structuredConsoleMode = "1">
+      allowLocationSimulation = "YES">
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
