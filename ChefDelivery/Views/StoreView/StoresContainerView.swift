@@ -51,8 +51,10 @@ struct StoresContainerView: View {
                                 Text("\(rating) estrelas ou mais")
                             }
                         }
+                        .accessibilityIdentifier("RatingFilterButton_\(rating)")
                     }
                 }
+                .accessibilityIdentifier("FilterMenu")
                 .foregroundStyle(.black)
             }
             VStack(alignment: .leading, spacing: 30) {

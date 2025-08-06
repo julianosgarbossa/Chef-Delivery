@@ -105,6 +105,7 @@ struct LoginView: View {
                                     .bold()
                                     .foregroundStyle(Color.white)
                             }
+                            .accessibilityIdentifier("dragButton")
                             
                             Spacer()
                         }

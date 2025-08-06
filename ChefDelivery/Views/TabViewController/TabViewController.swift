@@ -32,6 +32,7 @@ struct TabViewController: View {
                 }
             }
         }
+        .accessibilityIdentifier("TabViewController")
     }
 }
 
