@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PreviewSnapshots
 
 struct CarouselTabView: View {
     
@@ -45,6 +46,16 @@ struct CarouselTabView: View {
     }
 }
 
-#Preview {
-    CarouselTabView()
+struct CarouselTabView_Previews: PreviewProvider {
+    static var previews: some View {
+        CarouselTabView()
+    }
+    
+    static var snapshots: PreviewSnapshots<String> {
+        PreviewSnapshots(configurations: [
+            .init(name: "Default state", state: "Test")
+        ]) { state in
+            CarouselTabView()
+        }
+    }
 }

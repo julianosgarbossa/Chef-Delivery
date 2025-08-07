@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A286EB92E452CCE00CA6DB2 /* PreviewSnapshotsTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 3A286EB82E452CCE00CA6DB2 /* PreviewSnapshotsTesting */; };
+		3A286EBC2E452EAF00CA6DB2 /* PreviewSnapshots in Frameworks */ = {isa = PBXBuildFile; productRef = 3A286EBB2E452EAF00CA6DB2 /* PreviewSnapshots */; };
 		3A990A672E27DBCD0074443B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3A990A662E27DBCD0074443B /* Alamofire */; };
 		3AD570AF2E4146500002E8A9 /* Mocker in Frameworks */ = {isa = PBXBuildFile; productRef = 3AD570AE2E4146500002E8A9 /* Mocker */; };
 /* End PBXBuildFile section */
@@ -58,6 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A990A672E27DBCD0074443B /* Alamofire in Frameworks */,
+				3A286EBC2E452EAF00CA6DB2 /* PreviewSnapshots in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,18 +76,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AD570AF2E4146500002E8A9 /* Mocker in Frameworks */,
+				3A286EB92E452CCE00CA6DB2 /* PreviewSnapshotsTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A286EBA2E452EAF00CA6DB2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3A9D0C462DE5FA19002BC111 = {
 			isa = PBXGroup;
 			children = (
 				3A9D0C512DE5FA19002BC111 /* ChefDelivery */,
 				3AD84E102E3AAF50004A155A /* ChefDeliveryTests */,
 				3AD570BA2E42A8AA0002E8A9 /* ChefDeliveryUITests */,
+				3A286EBA2E452EAF00CA6DB2 /* Frameworks */,
 				3A9D0C502DE5FA19002BC111 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -120,6 +132,7 @@
 			name = ChefDelivery;
 			packageProductDependencies = (
 				3A990A662E27DBCD0074443B /* Alamofire */,
+				3A286EBB2E452EAF00CA6DB2 /* PreviewSnapshots */,
 			);
 			productName = ChefDelivery;
 			productReference = 3A9D0C4F2DE5FA19002BC111 /* ChefDelivery.app */;
@@ -167,6 +180,7 @@
 			name = ChefDeliveryTests;
 			packageProductDependencies = (
 				3AD570AE2E4146500002E8A9 /* Mocker */,
+				3A286EB82E452CCE00CA6DB2 /* PreviewSnapshotsTesting */,
 			);
 			productName = ChefDeliveryTests;
 			productReference = 3AD84E0F2E3AAF50004A155A /* ChefDeliveryTests.xctest */;
@@ -208,6 +222,7 @@
 			packageReferences = (
 				3A990A652E27DBCD0074443B /* XCRemoteSwiftPackageReference "Alamofire" */,
 				3AD570AD2E4146500002E8A9 /* XCRemoteSwiftPackageReference "Mocker" */,
+				3A286EB52E452CCE00CA6DB2 /* XCRemoteSwiftPackageReference "swiftui-preview-snapshots" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3A9D0C502DE5FA19002BC111 /* Products */;
@@ -479,13 +494,17 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2YF7DP2JBR;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.julianosgarbossa.ChefDeliveryUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = ChefDelivery;
 			};
 			name = Debug;
@@ -497,13 +516,17 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2YF7DP2JBR;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.julianosgarbossa.ChefDeliveryUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = ChefDelivery;
 			};
 			name = Release;
@@ -521,10 +544,14 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.julianosgarbossa.ChefDeliveryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChefDelivery.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ChefDelivery";
 			};
 			name = Debug;
@@ -542,9 +569,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.julianosgarbossa.ChefDeliveryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChefDelivery.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ChefDelivery";
 			};
 			name = Release;
@@ -591,6 +622,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3A286EB52E452CCE00CA6DB2 /* XCRemoteSwiftPackageReference "swiftui-preview-snapshots" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/doordash-oss/swiftui-preview-snapshots";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		3A990A652E27DBCD0074443B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -610,6 +649,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3A286EB82E452CCE00CA6DB2 /* PreviewSnapshotsTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A286EB52E452CCE00CA6DB2 /* XCRemoteSwiftPackageReference "swiftui-preview-snapshots" */;
+			productName = PreviewSnapshotsTesting;
+		};
+		3A286EBB2E452EAF00CA6DB2 /* PreviewSnapshots */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A286EB52E452CCE00CA6DB2 /* XCRemoteSwiftPackageReference "swiftui-preview-snapshots" */;
+			productName = PreviewSnapshots;
+		};
 		3A990A662E27DBCD0074443B /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3A990A652E27DBCD0074443B /* XCRemoteSwiftPackageReference "Alamofire" */;
