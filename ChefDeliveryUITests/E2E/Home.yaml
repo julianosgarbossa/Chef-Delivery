@@ -1,0 +1,10 @@
+appId: br.com.julianosgarbossa.ChefDelivery
+---
+- launchApp
+- tapOn: "Filtrar"
+- tapOn: "4 estrelas ou mais"
+- tapOn: "Filtrar"
+- tapOn: "5 estrelas"
+- assertVisible: "Nenhum resultado encontrado"
+- tapOn: "Filtrar"
+- tapOn: "Limpar filtro"
