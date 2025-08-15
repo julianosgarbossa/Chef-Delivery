@@ -9,6 +9,8 @@ O **Chef Delivery** é um aplicativo de delivery fictício desenvolvido com **Sw
   <img src="Assets/Tela_Loja.png" width="150"/>
   <img src="Assets/Tela_Produto.png" width="150"/>
   <img src="Assets/Tela_Pedido.png" width="150"/>
+  <img src="Assets/Tela_Busca.png" width="150"/>
+  <img src="Assets/Tela_Buscando.png" width="150"/>
 </p>
 
 ## 🛠 Tecnologias Utilizadas
