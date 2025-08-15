@@ -1,0 +1,13 @@
+appId: br.com.julianosgarbossa.ChefDelivery
+---
+- launchApp
+- assertVisible: "Busca"
+- tapOn: "Busca"
+- assertVisible: "Pesquisar loja"
+- tapOn: "Pesquisar loja"
+- inputText: "Sushi"
+- assertVisible: "Casa do Sushi"
+- tapOn:
+    id: "xmark.circle.fill"
+- assertVisible: "Monstro Burger"
+

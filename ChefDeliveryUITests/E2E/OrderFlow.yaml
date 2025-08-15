@@ -1,0 +1,27 @@
+appId: br.com.julianosgarbossa.ChefDelivery
+---
+- launchApp
+- scrollUntilVisible:
+    element:
+      text: "Açaí Panda"
+    direction: DOWN
+- assertVisible: "Açaí Panda"
+- tapOn: "Açaí Panda"
+- scrollUntilVisible:
+    element:
+      text: "Açaí Grande"
+    direction: DOWN
+- assertVisible: "Açaí Grande"
+- tapOn: "Açaí Grande"
+- tapOn:
+    id: "plus.circle.fill"
+- tapOn:
+    id: "plus.circle.fill"
+- assertVisible: "3"
+- tapOn:
+    id: "minus.circle.fill"
+- assertVisible: "2"
+- tapOn: "Enviar pedido"
+- assertVisible: "Confirmação do Pedido"
+- tapOn: "OK"
+    
