@@ -1,6 +1,6 @@
 # 📱 Chef Delivery - App de Entrega
 
-O **Chef Delivery** é um aplicativo de delivery fictício desenvolvido com **SwiftUI**, com foco em interface moderna e experiência fluida. Ele exibe categorias de produtos, banners promocionais e uma lista de lojas com sistema de filtro por avaliação. Ao selecionar uma loja, o usuário é direcionado para a tela de detalhes, onde pode visualizar o endereço, avaliação e cardápio disponível. Os pedidos podem ser feitos diretamente na tela do produto.
+O **Chef Delivery** é um aplicativo de delivery construído em **SwiftUI**, estruturado com **TabView** para navegação entre Home e Busca. Na Home, o usuário encontra banners promocionais dinâmicos e uma lista de lojas com filtro por avaliação; já a Busca permite localizar as lojas pelo nome ou segmento (ex.: Japonês, Pizza, Mexicana). A Tela de Detalhes exibe informações do estabelecimento, como endereço, nota e cardápio, enquanto a Tela de Produto possibilita ajustar a quantidade desejada de itens e finalizar o pedido com confirmação imediata.
 
 <p align="center">
   <img src="Assets/Tela_Login.png" width="150"/>
@@ -15,14 +15,18 @@ O **Chef Delivery** é um aplicativo de delivery fictício desenvolvido com **Sw
 
 ## 🛠 Tecnologias Utilizadas
 
-- Swift  
-- SwiftUI  
-- Componentização
-- MVC (Model-View-Controller) 
-- Mock de Dados
-- URLSession e Alamofire (Async/Await e CompletionHandler)
-- API REST (Via Apiary GET e POST)
-- Dependência Externa Via SPM (Alamofire)
+- Swift
+- SwiftUI
+- Arquitetura MVC (Model-View-Controller)
+- MVVM (ViewModel — implementação em andamento)
+- API REST (GET e POST via Apiary)
+- Testes Unitários (XCTest)
+- Testes E2E (end-to-end)
+- URLSession e Alamofire (com async/await e completion handler)
+- Swift Package Manager (dependência externa: Alamofire)
+- TabView (navegação por abas)
+- Mock de Dados para desenvolvimento e testes
+- Componentização de views para reutilização
 
 ## 👨🏻‍💻 Como Usar o Aplicativo
 
@@ -33,7 +37,8 @@ O **Chef Delivery** é um aplicativo de delivery fictício desenvolvido com **Sw
 - Utilize o filtro para visualizar lojas com base em sua avaliação.
 - Toque em uma loja para visualizar os detalhes e o cardápio.
 - Selecione um produto, ajuste a quantidade desejada e envie seu pedido.
+- Acesse a aba Busca para encontrar rapidamente uma loja específica.
 
 ## 📌 Observações
 
-Este projeto foi desenvolvido com fins **educacionais**, como prática de desenvolvimento iOS moderno utilizando **SwiftUI** e uma arquitetura leve baseada em **MVC**. O aplicativo integra com uma **API REST**, criada com o **Apiary**, e realiza requisições tanto do tipo **GET** (para listagem de dados) quanto **POST** (para envio de pedidos), utilizando `URLSession` e `Alamofire` com suporte a `async/await` e `completion handler`. Além disso, parte dos dados também pode ser simulada localmente via mocks, o que facilita testes e desenvolvimento.
+Este projeto foi desenvolvido com fins **educacionais**, como prática de desenvolvimento iOS moderno utilizando **SwiftUI** e uma arquitetura **MVC**, que está em evolução para para **MVVM**. O aplicativo integra com uma **API REST**, criada com o **Apiary**, e realiza requisições tanto do tipo **GET** (para listagem de dados) quanto **POST** (para envio de pedidos), utilizando `URLSession` e `Alamofire` com suporte a `async/await` e `completion handler`. Além disso, parte dos dados também pode ser simulada localmente via mocks, o que facilita testes e desenvolvimento.
